@@ -1,0 +1,5 @@
+#ignore bower files
+**/bower_components/
+
+#ignore npm files
+node_modules/
