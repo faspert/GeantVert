@@ -1,17 +1,9 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
-// config/passport.js
 
 // load all the things we need
 var LocalStrategy   = require('passport-local').Strategy;
 
 // load up the user model
-var User            = require('../app/models/users');
+var User            = require('../models/users');
 
 // expose this function to our app using module.exports
 module.exports = function(passport) {

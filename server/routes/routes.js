@@ -1,23 +1,31 @@
-/* 
- * We will have the following routes:
-
-    Home Page (/)
-    Login Page (/login)
-    Signup Page (/signup)
-    Handle the POST for both login
-    Handle the POST for both signup
-    Profile Page (after logged in)
-
- */
 // app/routes/routes.js
 module.exports = function(app, passport) {
 
+    // Session Routes API
+    var session = require('../controller/session');
+    
+    //app.get('/auth/session', auth.ensureAuthenticated, session.session);
+    app.post('/auth/session', session.login);
+    app.del('/auth/session', session.logout);
+    
+    
     // =====================================
     // HOME PAGE (with login links) ========
     // =====================================
-    app.get('/', function(req, res) {
-        res.render('index.ejs');
+   
+    
+    // Angular Routes
+    app.get('/partials/*', function (req, res) {
+        var requestedView = path.join('./', req.url);
+        res.render(requestedView);
     });
+    app.get('/*', function (req, res) {
+        if (req.user) {
+            res.cookie('user', JSON.stringify(req.user.user_info));
+        }
+        res.render('index.html');
+    });
+
 
     // =====================================
     // LOGIN ===============================

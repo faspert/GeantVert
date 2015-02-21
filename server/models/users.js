@@ -1,5 +1,5 @@
 /**
- *  Stores the user authentication schema
+ *  Stores the user authentication schemas
  * 
  */
 

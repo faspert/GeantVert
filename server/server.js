@@ -1,10 +1,3 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
 // server.js
 
 // modules =================================================
@@ -52,14 +45,20 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
 app.use(methodOverride('X-HTTP-Method-Override')); 
 
-// set the static files location /public/img will be /img for users
-app.use(express.static(__dirname + '/app/views')); 
-app.use(express.static(__dirname + '/app/bower_components'));
-app.use(express.static(__dirname + '/app'));
-app.set('views',__dirname + '/app/views');
+// set the static files location
+app.use(express.static(__dirname + '../app/views')); 
+app.use(express.static(__dirname + '../app/bower_components'));
+app.use(express.static(__dirname + '../app'));
+app.set('views',__dirname + '../app/views');
 
 // required for passport
-app.use(session({ secret: 'geantvert' })); // session secret
+app.use(session({ 
+    secret: 'geantvert', 
+    proxy: true,
+    resave: true,
+    saveUninitialized: true
+    })); 
+    
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
@@ -68,7 +67,7 @@ app.set('view engine', 'ejs'); // set up ejs for templating
 
 
 // routes ==================================================
-require('./app/routes/routes.js')(app,passport); // configure our routes
+require('./routes/routes.js')(app,passport); // configure our routes
 // start app ===============================================
 // startup our app at http://localhost:8080
 app.listen(port);               
