@@ -4,9 +4,9 @@
 /**
  * Déclaration de l'application gardenApp
  */
-var gardenApp = angular.module('gardenApp', [
+var gardenApp = angular.module('gardenApp', ['ngResource']
     // Dépendances du "module"
-]);
+);
 
 /**
  *  Routing
@@ -20,7 +20,7 @@ gardenApp.config(['$routeProvider',
                     controller: 'LoginCtrl'
                 }).
                 when('/signup', {
-                    templateUrl: 'partials/signup',
+                    templateUrl: 'partials/signup.html',
                     controller: 'SignupCtrl'
                 }).
                 otherwise({

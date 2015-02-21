@@ -27,13 +27,15 @@
         <!-- Header --> 
         <div ng-include="'/views/header.html'"></div>
         
+        <!-- Main -->
         <div class="container" ng-view=""></div>
         
-
+         <!-- Footer -->
         <div ng-include="'/views/footer.html'"></div>
         
         <script src="/angular/angular.js"></script>
-        <script src="/angular-route/angular-route.js"></script>        
+        <script src="/angular-route/angular-route.js"></script>
+        <script src="/angular/angular-resource.js"></script>
         
         <!-- Our Website Javascripts -->
         <script src="gardenApp.js"></script>
