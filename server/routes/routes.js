@@ -4,7 +4,7 @@ module.exports = function(app, passport) {
     // Session Routes API
     var session = require('../controller/session');
     
-    //app.get('/auth/session', auth.ensureAuthenticated, session.session);
+    app.get('/auth/session', session.session);
     app.post('/auth/session', session.login);
     app.del('/auth/session', session.logout);
     

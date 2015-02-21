@@ -7,13 +7,14 @@
 
 var mongoose = require('mongoose'),
         passport = require('passport');
-/**
- * Session
- * returns info on authenticated user
- */
-exports.session = function (req, res) {
-    res.json(req.user.user_info);
-};
+
+exports.ensureAuthenticated = function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return res.json(req.user.user_info);
+    }
+    res.send(401);
+}
+
 /**
  * Logout
  * returns nothing
