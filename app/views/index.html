@@ -19,27 +19,26 @@
         <link href="/morrisjs/morris.css" rel="stylesheet">
 
         <!-- Custom Fonts -->
-        <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">       
+        <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="/styles/login.css" rel="stylesheet" type="text/css">       
+        
+         <base href="/">
     </head>
     <body>
-         <div id="wrapper">
-
+        
         <!-- Header --> 
-        <div ng-include="'/views/header.html'"></div>
+        <div ng-include="'/partials/header.html'"></div>
         
         <!-- Main -->
         <div class="container" ng-view=""></div>
         
          <!-- Footer -->
-        <div ng-include="'/views/footer.html'"></div>
+        <div ng-include="'/partials/footer.html'"></div>
         
         <script src="/angular/angular.js"></script>
         <script src="/angular-route/angular-route.js"></script>
-        <script src="/angular/angular-resource.js"></script>
+        <script src="/angular-resource/angular-resource.js"></script>
         
-        <!-- Our Website Javascripts -->
-        <script src="gardenApp.js"></script>
-
         <!-- jQuery -->
         <script src="/jquery/dist/jquery.min.js"></script>
 
@@ -55,5 +54,10 @@
 
         <!-- Admin Theme JavaScript -->
         <script src="/startbootstrap-sb-admin-2/dist/js/sb-admin-2.js"></script>
+        
+        <!-- Our Website Javascripts -->
+        <script src="gardenApp.js"></script>
+        <!-- Our Website Javascripts -->
+        <script src="/controllers/LoginCtrl.js"></script>
     </body>
 </html>

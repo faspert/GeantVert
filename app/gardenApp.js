@@ -4,31 +4,28 @@
 /**
  * Déclaration de l'application gardenApp
  */
-var gardenApp = angular.module('gardenApp', ['ngResource']
-    // Dépendances du "module"
-);
+var gardenApp = angular.module('gardenApp', [
+    //Dependencies
+    'ngResource',
+    'ngRoute'
+]);
 
 /**
  *  Routing
  * 
  */
-gardenApp.config(['$routeProvider',
-    function ($routeProvider) {
+gardenApp.config(['$routeProvider','$locationProvider',
+    function ($routeProvider,$locationProvider) {
         $routeProvider
-                .when('/login', {
-                    templateUrl: 'partials/login.html',
+                .when('/', {
+                    templateUrl: '/partials/login.html',
                     controller: 'LoginCtrl'
                 }).
                 when('/signup', {
-                    templateUrl: 'partials/signup.html',
+                    templateUrl: '/partials/signup.html',
                     controller: 'SignupCtrl'
                 }).
-                otherwise({
-                    redirectTo: '/login'
-                });
+                otherwise({ redirectTo: '/' });
+        $locationProvider.html5Mode(true);
     }]);
-/**
- * Contrôleur de l'application".
- */
-//gardenApp.controller('MyController',['$scope'],function)
 
