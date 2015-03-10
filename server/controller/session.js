@@ -5,8 +5,8 @@
  */
 'use strict';
 
-var mongoose = require('mongoose'),
-        passport = require('passport');
+var mongoose = require('mongoose');
+var passport = require('passport');
 
 exports.ensureAuthenticated = function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
@@ -32,7 +32,7 @@ exports.logout = function (req, res) {
  * requires: {email, password}
  */
 exports.login = function (req, res, next) {
-    passport.authenticate('local', function (err, user, info) {
+    passport.authenticate('local-login', function (err, user, info) {
         var error = err || info;
         if (error) {
             return res.json(400, error);

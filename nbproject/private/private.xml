@@ -3,17 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/My%20Documents/NetBeansProjects/Jardin2.0/app/views/footer.html</file>
-            <file>file:/E:/My%20Documents/NetBeansProjects/Jardin2.0/app/views/index.ejs</file>
+            <file>file:/E:/My%20Documents/NetBeansProjects/Jardin2.0/app/views/index.html</file>
+            <file>file:/E:/My%20Documents/NetBeansProjects/Jardin2.0/server/server.js</file>
+            <file>file:/E:/My%20Documents/NetBeansProjects/Jardin2.0/server/config/passport.js</file>
             <file>file:/E:/My%20Documents/NetBeansProjects/Jardin2.0/app/gardenApp.js</file>
-            <file>file:/E:/My%20Documents/NetBeansProjects/Jardin2.0/bower.json</file>
-            <file>file:/E:/My%20Documents/NetBeansProjects/Jardin2.0/app/bower_components/angular/angular.js</file>
-            <file>file:/E:/My%20Documents/NetBeansProjects/Jardin2.0/app/routes/routes.js</file>
-            <file>file:/E:/My%20Documents/NetBeansProjects/Jardin2.0/app/views/header.html</file>
-            <file>file:/E:/My%20Documents/NetBeansProjects/Jardin2.0/server.js</file>
-            <file>file:/E:/My%20Documents/NetBeansProjects/Jardin2.0/package.json</file>
-            <file>file:/E:/My%20Documents/NetBeansProjects/Jardin2.0/config/passport.js</file>
-            <file>file:/E:/My%20Documents/NetBeansProjects/Jardin2.0/app/models/users.js</file>
+            <file>file:/E:/My%20Documents/NetBeansProjects/Jardin2.0/server/routes/routes.js</file>
+            <file>file:/E:/My%20Documents/NetBeansProjects/Jardin2.0/app/styles/login.css</file>
+            <file>file:/E:/My%20Documents/NetBeansProjects/Jardin2.0/app/views/partials/header.html</file>
+            <file>file:/E:/My%20Documents/NetBeansProjects/Jardin2.0/app/controllers/LoginCtrl.js</file>
+            <file>file:/E:/My%20Documents/NetBeansProjects/Jardin2.0/app/views/partials/footer.html</file>
+            <file>file:/E:/My%20Documents/NetBeansProjects/Jardin2.0/app/services/Session.js</file>
+            <file>file:/E:/My%20Documents/NetBeansProjects/Jardin2.0/app/services/Auth.js</file>
         </group>
     </open-files>
 </project-private>
