@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="fr" ng-app="gardenApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="fr" ng-app="gardenApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="fr" ng-app="gardenApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html lang="fr" ng-app="gardenApp" class="no-js">  <![endif]-->
+<html lang="fr" ng-app="gardenApp">
+    <head>
+        <title>Votre Géant Vert</title>
+        <!-- Bootstrap Core CSS -->
+        <link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+        <!-- MetisMenu CSS -->
+        <link href="/metisMenu/dist/metisMenu.min.css" rel="stylesheet" type="text/css">
+
+        <!-- Dashboard CSS -->
+        <link href="/startbootstrap-sb-admin-2/dist/css/sb-admin-2.css" rel="stylesheet" type="text/css">
+
+        <!-- Morris Charts CSS -->
+        <link href="/morrisjs/morris.css" rel="stylesheet">
+
+        <!-- Custom Fonts -->
+        <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="/styles/login.css" rel="stylesheet" type="text/css">       
+        
+         <base href="/">
+    </head>
+    <body>
+        
+        <!-- Header --> 
+        <div ng-include="'/partials/header.html'"></div>
+        
+        <!-- Main -->
+        <div class="container" ng-view=""></div>
+        
+         <!-- Footer -->
+        <div ng-include="'/partials/footer.html'"></div>
+        
+        <script src="/angular/angular.js"></script>
+        <script src="/angular-route/angular-route.js"></script>
+        <script src="/angular-cookies/angular-cookies.js"></script>
+        <script src="/angular-resource/angular-resource.js"></script>
+        
+        <!-- jQuery -->
+        <script src="/jquery/dist/jquery.min.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="/metisMenu/dist/metisMenu.min.js"></script>
+
+        <!-- Morris Charts JavaScript -->
+        <script src="/raphael/raphael-min.js"></script>
+        <script src="/morrisjs/morris.min.js"></script>
+
+        <!-- Admin Theme JavaScript -->
+        <script src="/startbootstrap-sb-admin-2/dist/js/sb-admin-2.js"></script>
+        
+        <!-- Our Website Javascripts -->
+        <script src="gardenApp.js"></script>
+        <script src="/controllers/DashboardCtrl.js"></script>
+    </body>
+</html>

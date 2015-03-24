@@ -26,6 +26,10 @@ gardenApp.config(['$routeProvider','$locationProvider',
                     templateUrl: '/partials/signup.html',
                     controller: 'SignupCtrl'
                 }).
+                when('/dashboard/',{
+                    templateUrl: '/dashboard.html',
+                    controller: 'GardenCtrl'
+                }).
                 otherwise({ redirectTo: '/' });
         $locationProvider.html5Mode(true);
     }]);

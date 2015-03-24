@@ -8,7 +8,6 @@
 
 angular.module('gardenApp')
     .controller('LoginCtrl', function ($scope, Auth, $location) {
-        console.log('This is the login controller');
         $scope.error = {};
         $scope.user = {};
         $scope.login = function (form) {
@@ -16,10 +15,10 @@ angular.module('gardenApp')
                 'email': $scope.user.email,
                 'password': $scope.user.password
             },
-            function (err) {
+            function (err,responseHeaders) {
                 $scope.errors = {};
                 if (!err) {
-                    $location.path('/');
+
                 } else {
                     angular.forEach(err.errors, function (error, field) {
                         form[field].$setValidity('mongoose', false);

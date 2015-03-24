@@ -9,18 +9,20 @@ module.exports = function (app, passport) {
     app.post('/auth/session', function handleLocalAuthentication(req, res, next) {
 
         passport.authenticate('local-login', function (err, user, info) {
+            
             if (err)
                 return next(err);
-            if (!user) {                
-                return res.json(403, info);
+            if (!user) {          
+                return res.status(403).json(info);             
             }
 
             // Manually establish the session...
             req.login(user, function (err) {
                 if (err)
                     return next(err);
-                console.log('User authenticated successfully');
-                //res.redirect('/users/' + user);
+                console.log('User with id : %s authenticated successfully',user._id.toString());
+                //redirect user to its dashboard page
+                res.render('dashboard.html');
             });
 
         })(req, res, next);
@@ -30,15 +32,11 @@ module.exports = function (app, passport) {
     app.del('/auth/session', session.logout);
 
 
-
     // Angular Routes
     app.get('/partials/*', function (req, res) {
-        console.log('serving partial view');
+        
         //var requestedView = path.join('./', req.url);
         res.render('partials/' + req.params.name);
-    });
-
-    app.get('/dashboard/*', function (req, res) {
     });
 
     app.get('/*', function (req, res) {

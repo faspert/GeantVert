@@ -14,13 +14,13 @@ angular.module('gardenApp')
           email: user.email,
           password: user.password,
           rememberMe: user.rememberMe
-        }, function(user) {
+        }, function(user,responseHeaders) {
           $rootScope.currentUser = user;
           console.log("Success Response!!!");
-          return cb();
+          return cb(null,responseHeaders);
         }, function(err) {
             console.log("Error Response!!!");
-          return cb(err.data);
+          return cb(err.data,null);
         });
       },
 
