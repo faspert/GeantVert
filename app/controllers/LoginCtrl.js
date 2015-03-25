@@ -18,7 +18,7 @@ angular.module('gardenApp')
             function (err,responseHeaders) {
                 $scope.errors = {};
                 if (!err) {
-
+                    $location.path('/dashboard');
                 } else {
                     angular.forEach(err.errors, function (error, field) {
                         form[field].$setValidity('mongoose', false);

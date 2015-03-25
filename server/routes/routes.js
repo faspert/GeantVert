@@ -20,9 +20,11 @@ module.exports = function (app, passport) {
             req.login(user, function (err) {
                 if (err)
                     return next(err);
-                console.log('User with id : %s authenticated successfully',user._id.toString());
+
                 //redirect user to its dashboard page
                 res.render('dashboard.html');
+
+                console.log('User with id : %s authenticated successfully',user._id.toString());
             });
 
         })(req, res, next);
