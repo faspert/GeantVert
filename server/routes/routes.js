@@ -22,7 +22,7 @@ module.exports = function (app, passport) {
                     return next(err);
 
                 //redirect user to its dashboard page
-                res.render('dashboard.html');
+                res.render('dashboardShell.html');
 
                 console.log('User with id : %s authenticated successfully',user._id.toString());
             });
@@ -39,6 +39,11 @@ module.exports = function (app, passport) {
         
         //var requestedView = path.join('./', req.url);
         res.render('partials/' + req.params.name);
+    });
+
+    app.get('/dashboard', function (req, res) {
+        console.log('serving dashboard');
+        res.render('dashboardShell.html');
     });
 
     app.get('/*', function (req, res) {
