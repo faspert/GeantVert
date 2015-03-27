@@ -27,7 +27,7 @@ gardenApp.config(['$routeProvider','$locationProvider',
                     controller: 'SignupCtrl'
                 }).
                 when('/dashboard',{
-                    templateUrl: '/dashboard.html',
+                    templateUrl: '/partials/dashboard.html',
                     controller: 'DashboardCtrl'
                 }).
                 otherwise({ redirectTo: '/' });
