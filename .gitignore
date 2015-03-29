@@ -3,3 +3,4 @@
 
 #ignore npm files
 node_modules/
+/.idea/

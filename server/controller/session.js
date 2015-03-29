@@ -8,6 +8,16 @@
 var mongoose = require('mongoose');
 var passport = require('passport');
 
+
+/**
+ *  Middleware used to check if user has priviledge for accessing the requested URL
+ *  If not authenticated correctly, returns a 401
+ *
+ * @param req
+ * @param res
+ * @param next
+ * @returns {*}
+ */
 exports.ensureAuthenticated = function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         return res.json(req.user.user_info);
