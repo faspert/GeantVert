@@ -9,7 +9,6 @@ var methodOverride = require('method-override');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var session = require('express-session');
-var flash = require('connect-flash');
 var cookieParser = require('cookie-parser');
 //session store
 var MongoStore = require('connect-mongo')(session);
@@ -61,7 +60,6 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
-app.use(flash()); // use connect-flash for flash messages stored in session
 
 //app.set('view engine', 'ejs'); // set up ejs for templating
 app.engine('html', require('ejs').renderFile);

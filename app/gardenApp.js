@@ -30,6 +30,10 @@ gardenApp.config(['$routeProvider','$locationProvider',
                     templateUrl: '/partials/dashboard.html',
                     controller: 'DashboardCtrl'
                 }).
+                when('/dashboard/calendar',{
+                templateUrl: '/partials/calendar.html',
+                controller: 'CalendarCtrl'
+            }).
                 otherwise({ redirectTo: '/' });
         $locationProvider.html5Mode(true);
     }]);

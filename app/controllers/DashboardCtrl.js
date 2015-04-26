@@ -7,6 +7,7 @@
 
 angular.module('gardenApp')
     .controller('DashboardCtrl', function ($scope) {
-        console.log('This is the dashboard controller');
+        console.log('Fetching Data for user');
+
     });
 
