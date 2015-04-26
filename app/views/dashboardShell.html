@@ -28,13 +28,17 @@
         
         <!-- Header --> 
         <div ng-include="'/partials/header.html'"></div>
+
+        <!-- Sidebar -->
+        <div ng-include="'/partials/sidebar.html'"></div>
         
         <!-- Main -->
         <div class="container" ng-view=""></div>
         
          <!-- Footer -->
         <div ng-include="'/partials/footer.html'"></div>
-        
+
+        <!-- Core Javascript -->
         <script src="/angular/angular.js"></script>
         <script src="/angular-route/angular-route.js"></script>
         <script src="/angular-cookies/angular-cookies.js"></script>
@@ -56,8 +60,9 @@
         <!-- Admin Theme JavaScript -->
         <script src="/startbootstrap-sb-admin-2/dist/js/sb-admin-2.js"></script>
         
-        <!-- Our Website Javascripts -->
+        <!-- Our Javascripts -->
         <script src="gardenApp.js"></script>
         <script src="/controllers/DashboardCtrl.js"></script>
+        <script src="/controllers/SideCtrl.js"></script>
     </body>
 </html>

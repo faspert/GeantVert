@@ -7,8 +7,6 @@ module.exports = function (app, passport) {
     var User            = require('../models/users');
 
 
-    app.post('/registration2', passport.authenticate('local-signup'));
-
     app.post('/registration', function (req, res, next) {
 
         process.nextTick(function () {
