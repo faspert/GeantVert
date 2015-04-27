@@ -39,17 +39,7 @@ module.exports = function (app, passport) {
                             throw err;
                     });
 
-                    //login manually with local passport strategy
-                    req.login(newUser, function (err) {
-                        if (err)
-                            return next(err);
-
-                        console.log('User : %s authenticated successfully', newUser.local.username);
-
-                        //redirect user to its dashboard page
-                        return res.status(200).send();
-                    });
-
+                    return session.sessionLogin(req, res ,newUser,next);
                 }
 
             });
@@ -69,26 +59,18 @@ module.exports = function (app, passport) {
                 return res.status(403).json(info);             
             }
 
-            // Manually establish the session...
-            req.login(user, function (err) {
-                if (err)
-                    return next(err);
-
-                //redirect user to its dashboard page
-                res.render('dashboardShell.html');
-
-                console.log('User : %s authenticated successfully',user.local.username);
-            });
+            return session.sessionLogin(req, res, user, next);
 
         })(req, res, next);
     });
     
     
-    app.del('/auth/session', session.logout);
+    app.delete('/auth/session', session.logout);
 
+    app.get('/dashboard',session.ensureAuthenticated, function (req, res) {
 
-    app.get('/dashboard', function (req, res) {
-        console.log('serving dashboard');
+        console.log('serving dashboard of : %s',req.user.local.username);
+        //redirect user to its dashboard page
         res.render('dashboardShell.html');
     });
 
@@ -97,12 +79,7 @@ module.exports = function (app, passport) {
         res.render('partials/' + req.params.name);
     });
 
-    app.get('/dashboard',session.ensureAuthenticated, function (req, res) {
 
-        console.log('serving dashboard');
-        //redirect user to its dashboard page
-        res.render('dashboard.html');
-    });
 
     app.get('/*', function (req, res) {
         if (req.user) {

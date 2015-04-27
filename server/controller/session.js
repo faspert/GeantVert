@@ -9,6 +9,28 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 
 
+
+/**
+ * Manually establish the session
+ *
+ * @param req
+ * @param user User to be logged in (coming for mongo)
+ */
+exports.sessionLogin = function(req, res, user, next) {
+
+    req.login(user, function (err) {
+        if (err)
+            return next(err);
+
+        console.log('User : %s authenticated successfully',user.local.username);
+
+        res.status(200).send();
+    });
+}
+
+
+
+
 /**
  *  Middleware used to check if user has priviledge for accessing the requested URL
  *  If not authenticated correctly, returns a 401
@@ -19,10 +41,11 @@ var passport = require('passport');
  * @returns {*}
  */
 exports.ensureAuthenticated = function ensureAuthenticated(req, res, next) {
+   console.log('Ensure user is authenticated');
     if (req.isAuthenticated()) {
-        return res.json(req.user.user_info);
+        next();
     }
-    res.send(401);
+    res.status(401).send();
 }
 
 /**
@@ -32,9 +55,9 @@ exports.ensureAuthenticated = function ensureAuthenticated(req, res, next) {
 exports.logout = function (req, res) {
     if (req.user) {
         req.logout();
-        res.send(200);
+        res.status(200).send();
     } else {
-        res.send(400, "Not logged in");
+        res.status(400).send("Not logged in");
     }
 };
 /**
