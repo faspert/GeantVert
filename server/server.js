@@ -75,5 +75,16 @@ app.listen(port);
 // shoutout to the user                     
 console.log('Magic happens on port ' + port);
 
+//create dummy sensor values
+// load up the user model
+var Garden  = require('./models/Garden');
+var record = new Garden({
+    username    : 'faspert'
+});
+record.save(function (err) {
+    if (err) return handleError(err);
+    // saved!
+})
+
 // expose app           
 exports = module.exports = app;

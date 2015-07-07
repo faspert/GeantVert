@@ -27,7 +27,7 @@ angular.module('gardenApp')
                 }
 
                 var g = new Dygraph(element.children()[0], data, {
-                    title: 'Stacked chart w/ Total',
+                    title: 'Temperature / Humidite',
                     stackedGraph: true,
                     axes: {
                         x: {
