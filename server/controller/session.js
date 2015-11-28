@@ -14,7 +14,7 @@ var passport = require('passport');
  * Manually establish the session
  *
  * @param req
- * @param user User to be logged in (coming for mongo)
+ * @param user User to be logged in (coming from mongo)
  */
 exports.sessionLogin = function(req, res, user, next) {
 
@@ -42,9 +42,11 @@ exports.sessionLogin = function(req, res, user, next) {
  */
 exports.ensureAuthenticated = function ensureAuthenticated(req, res, next) {
    console.log('Ensure user is authenticated');
-    if (req.isAuthenticated()) {
+    if (req.login()) {
+        console.log('User is autenticated');
         next();
     }
+    console.log('Failed to authenticate user');
     res.status(401).send();
 }
 
@@ -68,7 +70,7 @@ exports.login = function (req, res, next) {
     passport.authenticate('local-login', function (err, user, info) {
         var error = err || info;
         if (error) {
-            return res.json(400, error);
+            return res.status(400).json(error);
         }
         req.logIn(user, function (err) {
             if (err) {

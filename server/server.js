@@ -1,6 +1,6 @@
 // server.js
 
-// modules =================================================
+// modules
 var express = require('express');
 var app = express();
 
@@ -13,7 +13,6 @@ var cookieParser = require('cookie-parser');
 //session store
 var MongoStore = require('connect-mongo')(session);
 
-// configuration ===========================================
 
 // config files
 var db = require('./config/db');
@@ -65,10 +64,9 @@ app.use(passport.session()); // persistent login sessions
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
-
-// routes ==================================================
+// routes
 require('./routes/routes.js')(app, passport); // configure our routes
-// start app ===============================================
+
 // startup our app at http://localhost:8080
 app.listen(port);
 
@@ -77,14 +75,15 @@ console.log('Magic happens on port ' + port);
 
 //create dummy sensor values
 // load up the user model
-var Garden  = require('./models/Garden');
-var record = new Garden({
-    username    : 'faspert'
-});
-record.save(function (err) {
-    if (err) return handleError(err);
+//var Garden  = require('./models/Garden');
+//var record = new Garden({
+//    username    : 'faspert'
+//});
+
+//record.save(function (err) {
+//    if (err) return handleError(err);
     // saved!
-})
+//})
 
 // expose app           
 exports = module.exports = app;

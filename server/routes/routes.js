@@ -5,6 +5,7 @@ module.exports = function (app, passport) {
     var session = require('../controller/session');
     // load up the user model
     var User            = require('../models/users');
+    var Garden          = require('../models/Garden')
 
 
     app.post('/registration', function (req, res, next) {
@@ -67,9 +68,17 @@ module.exports = function (app, passport) {
     
     app.delete('/auth/session', session.logout);
 
-    app.get('/dashboard',session.ensureAuthenticated, function (req, res) {
+    app.get('/dashboard',session.sessionLogin, function (req, res) {
 
         console.log('serving dashboard of : %s',req.user.local.username);
+
+        //get user data
+        // find each person with a last name matching 'Ghost', selecting the `name` and `occupation` fields
+        Garden.find({ 'username': req.user.local.username }, 'humidity temperature', function (err, samples) {
+            if (err) return handleError(err);
+            console.log(samples);
+        })
+
         //redirect user to its dashboard page
         res.render('dashboardShell.html');
     });
@@ -80,6 +89,10 @@ module.exports = function (app, passport) {
     });
 
 
+    app.post('/devicedata',function(req, res) {
+       console.log('device is posting new data');
+        return res.status(200).send();
+    });
 
     app.get('/*', function (req, res) {
         if (req.user) {
