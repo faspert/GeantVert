@@ -73,7 +73,6 @@ module.exports = function (app, passport) {
         console.log('serving dashboard of : %s',req.user.local.username);
 
         //get user data
-        // find each person with a last name matching 'Ghost', selecting the `name` and `occupation` fields
         Garden.find({ 'username': req.user.local.username }, 'humidity temperature', function (err, samples) {
             if (err) return handleError(err);
             console.log(samples);

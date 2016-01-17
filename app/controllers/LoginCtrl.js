@@ -3,7 +3,7 @@
 
 
 angular.module('gardenApp')
-    .controller('LoginCtrl', function ($scope, Auth, $location) {
+    .controller('LoginCtrl', function ($scope, Auth) {
         $scope.error = {};
         $scope.user = {};
         $scope.login = function (form) {
@@ -15,7 +15,7 @@ angular.module('gardenApp')
             function (err,responseHeaders) {
                 $scope.errors = {};
                 if (!err) {
-                    window.location = '/dashboard'
+                    window.location = '/dashboard';
                 } else {
                     angular.forEach(err.errors, function (error, field) {
                         form[field].$setValidity('mongoose', false);

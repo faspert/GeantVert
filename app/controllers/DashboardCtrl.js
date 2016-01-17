@@ -6,8 +6,8 @@
 'use strict';
 
 angular.module('gardenApp')
-    .controller('DashboardCtrl', function ($scope) {
-        console.log('Fetching Data for user');
+    .controller('DashboardCtrl', function ($scope, $cookieStore) {
+        console.log('Fetching Data for user: ',$cookieStore.get('username'));
 
     });
 

@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('gardenApp')
-  .factory('Auth', function Auth($location, $rootScope, Session, Registration, $cookieStore) {
-    $rootScope.currentUser = $cookieStore.put('currentuser','user') || null;
-    $cookieStore.remove('currentuser');
+  .factory('Auth', function Auth($location, Session, Registration, $cookieStore) {
+    $cookieStore.put('currentuser','user') || null;
+    $cookieStore.remove('username');
 
     return {
 
@@ -14,7 +14,7 @@ angular.module('gardenApp')
               email: user.email,
               password: user.password
             }, function(user,responseHeaders) {
-          $rootScope.currentUser = user;
+          $cookieStore.put('username',user.username);
           console.log("Success Response!!!");
           return cb(null,responseHeaders);
         }, function(err) {
@@ -29,9 +29,8 @@ angular.module('gardenApp')
           provider: provider,
           email: user.email,
           password: user.password,
-          rememberMe: user.rememberMe
         }, function(user,responseHeaders) {
-          $rootScope.currentUser = user;
+          $cookieStore.put('username',user.email);
           console.log("Success Response!!!");
           return cb(null,responseHeaders);
         }, function(err) {
@@ -43,7 +42,7 @@ angular.module('gardenApp')
       logout: function(callback) {
         var cb = callback || angular.noop;
         Session.delete(function(res) {
-            $rootScope.currentUser = null;
+            CurrentUser.setUser('');
             return cb();
           },
           function(err) {
