@@ -2,9 +2,7 @@
 
 angular.module('gardenApp')
   .factory('Auth', function Auth($location, Session, Registration, $cookieStore) {
-    $cookieStore.put('currentuser','user') || null;
     $cookieStore.remove('username');
-
     return {
 
       signup: function(user, callback) {
@@ -42,7 +40,6 @@ angular.module('gardenApp')
       logout: function(callback) {
         var cb = callback || angular.noop;
         Session.delete(function(res) {
-            CurrentUser.setUser('');
             return cb();
           },
           function(err) {

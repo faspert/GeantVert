@@ -82,11 +82,9 @@ module.exports = function (app, passport) {
         res.render('dashboardShell.html');
     });
 
-    // Angular Routes
-    app.get('/partials/*', function (req, res) {
-        res.render('partials/' + req.params.name);
-    });
-
+    app.get('/garden',session.ensureAuthenticated, function(req,res) {
+      console.log('fetching garden data')
+    })
 
     app.post('/devicedata',function(req, res) {
        console.log('device is posting new data');
@@ -94,9 +92,6 @@ module.exports = function (app, passport) {
     });
 
     app.get('/*', function (req, res) {
-        if (req.user) {
-            res.cookie('user', JSON.stringify(req.user.user_info));
-        }
         console.log('serving index');
         res.render('index.html');
     });
