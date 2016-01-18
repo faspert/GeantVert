@@ -72,23 +72,25 @@ module.exports = function (app, passport) {
 
         console.log('serving dashboard of : %s',req.user.local.username);
 
-        //get user data
-        Garden.find({ 'username': req.user.local.username }, 'humidity temperature', function (err, samples) {
-            if (err) return handleError(err);
-            console.log(samples);
-        })
-
         //redirect user to its dashboard page
         res.render('dashboardShell.html');
     });
 
     app.get('/garden',session.ensureAuthenticated, function(req,res) {
-      console.log('fetching garden data')
-    })
+      console.log('fetching garden data');
+
+        //get user data
+        //Garden.find({ 'username': req.user.local.username }, 'humidity temperature', function (err, samples) {
+        //    if (err) return handleError(err);
+        //    console.log(samples);
+        //});
+
+        res.status(200).send();
+    });
 
     app.post('/devicedata',function(req, res) {
        console.log('device is posting new data');
-        return res.status(200).send();
+        res.status(200).send();
     });
 
     app.get('/*', function (req, res) {

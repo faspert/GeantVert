@@ -42,9 +42,9 @@ exports.sessionLogin = function(req, res, user, next) {
  */
 exports.ensureAuthenticated = function ensureAuthenticated(req, res, next) {
    console.log('Ensure user is authenticated');
-    if (req.login()) {
+    if (req.isAuthenticated()) {
         console.log('User is autenticated');
-        next();
+        return next();
     }
     console.log('Failed to authenticate user');
     res.status(401).send();
