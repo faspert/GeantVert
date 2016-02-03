@@ -80,12 +80,13 @@ module.exports = function (app, passport) {
       console.log('fetching garden data');
 
         //get user data
-        //Garden.find({ 'username': req.user.local.username }, 'humidity temperature', function (err, samples) {
-        //    if (err) return handleError(err);
-        //    console.log(samples);
-        //});
+        Garden.find({ 'username': req.user.local.username }, 'timestamp humidity temperature', function (err, samples) {
+            if (err) return handleError(err);
+            console.log(samples);
+            res.status(200).send(samples);
+        });
 
-        res.status(200).send();
+
     });
 
     app.post('/devicedata',function(req, res) {

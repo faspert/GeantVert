@@ -7,8 +7,38 @@
 
 angular.module('gardenApp')
     .controller('DashboardCtrl', function ($scope, $cookieStore, Data) {
-        console.log('Fetching Data for user: ',$cookieStore.get('username'));
-        Data.get();
+        $scope.data = [];
+        $scope.options = {labels: [ 'Date', 'Humidite', 'Temperature' ],
+            ylabel: 'Temperature',
+            y2label: 'Humidite',
+        };
+        //retrieve garden data
+        Data.query( function(data) {
+
+            //format data for dygraph display
+            // [[TS1 HUM1 TEMP1]
+            //  [TS2 HUM2 TEMP2]
+            //  ...
+            //  [TSN HUMN TEMPN]]
+
+            angular.forEach(data, function(item) {
+                console.log(item);
+                for (var elem = 0; elem < item['humidity'].length; elem++)
+                {
+                    var datarow = [];
+                    //interval between each sample (10 min for now)
+                    var timestamp = moment(item.timestamp);
+                    timestamp.add(elem*10,'m');
+                    datarow.push(timestamp.format('YYYY-MM-DD HH:m:s'));
+                    datarow.push(item.humidity[elem]);
+                    datarow.push(item.temperature[elem]);
+                    $scope.data.push(datarow);
+                }
+
+            });
+        console.log('finished data processing');
+
+        });
 
     });
 

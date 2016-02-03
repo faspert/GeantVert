@@ -9,42 +9,34 @@ angular.module('gardenApp')
             restrict: 'EAC', //E = element, A = attribute, C = class, M = comment
             scope: true ,   //use parent's scope
             //replace: 'true',  // replace directive by template in html
-            template: '<div id="demodiv"></div>',
+            template: '<div id="graphdiv"></div>',
 
-            link: function ($scope, element, attrs) {  //DOM manipulation
+            link: function (scope, element, attrs) {  //DOM manipulation
 
                 console.log('testing the stuff');
-                function data() {
-                    var r = "date,line,another line,sine wave\n";
-                    for (var i = 1; i <= 31; i++) {
-                        r += "2006/10/" + (i > 10 ? i : "0" + i);
-                        r += "," + 10 * (8 * i);
-                        r += "," + 10 * (250 - 8 * i);
-                        r += "," + 10 * (125 + 125 * Math.sin(0.3 * i));
-                        r += "\n";
-                    }
-                    return r;
-                }
 
-                var g = new Dygraph(element.children()[0], data, {
+                var g = new Dygraph(element.children()[0], [0], {
                     title: 'Temperature / Humidite',
-                    stackedGraph: true,
-                    axes: {
-                        x: {
-                            valueFormatter: function(val, opts, series_name, dygraph) {
-                                for (var i = 0; i < dygraph.numRows(); i++) {
-                                    if (dygraph.getValue(i, 0) != val) continue;
-                                    var total = 0;
-                                    for (var j = 1; j < dygraph.numColumns(); j++) {
-                                        total += dygraph.getValue(i, j);
-                                    }
-                                    return Dygraph.dateString_(val) + ' (total: ' + total.toFixed(2) + ')';
-                                }
-                            }
-
-                        }
-                    }
+                    stackedGraph: true
                 });
+
+                scope.$watch("data", function () {
+
+                    console.log('scope changes');
+                    var options = scope.options;
+                    if (options === undefined) {
+                        options = {};
+                    }
+                    if (scope.data.length != 0)
+                        options.file = scope.data;
+
+                    console.log(scope.data)
+                    g.updateOptions(options);
+                    g.resetZoom();
+
+                    g.resize();
+
+                }, true);
             }
         }
     });
