@@ -15,9 +15,8 @@ angular.module('gardenApp')
 
                 console.log('testing the stuff');
 
-                var g = new Dygraph(element.children()[0], [0], {
+                var g = new Dygraph(element.children()[0], [[0,0]], {
                     title: 'Temperature / Humidite',
-                    stackedGraph: true
                 });
 
                 scope.$watch("data", function () {
@@ -27,6 +26,7 @@ angular.module('gardenApp')
                     if (options === undefined) {
                         options = {};
                     }
+                    //do not update if data is empty
                     if (scope.data.length != 0)
                         options.file = scope.data;
 

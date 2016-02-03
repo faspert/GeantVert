@@ -8,10 +8,31 @@
 angular.module('gardenApp')
     .controller('DashboardCtrl', function ($scope, $cookieStore, Data) {
         $scope.data = [];
-        $scope.options = {labels: [ 'Date', 'Humidite', 'Temperature' ],
+        $scope.options = {
+            labels: [ 'Date', 'Humidite', 'Temperature' ],
             ylabel: 'Temperature',
             y2label: 'Humidite',
+            fillGraph : true,
+            series: {
+                'Temperature': {
+                    axis: 'y2'
+                },
+            },
+            axes: {
+                y: {
+                    // set axis-related properties here
+                    drawGrid: false,
+                    independentTicks: true
+                },
+                y2: {
+                    // set axis-related properties here
+                    labelsKMB: true,
+                    drawGrid: true,
+                    independentTicks: true
+                }
+            }
         };
+
         //retrieve garden data
         Data.query( function(data) {
 
@@ -29,15 +50,14 @@ angular.module('gardenApp')
                     //interval between each sample (10 min for now)
                     var timestamp = moment(item.timestamp);
                     timestamp.add(elem*10,'m');
-                    datarow.push(timestamp.format('YYYY-MM-DD HH:m:s'));
+
+                    datarow.push(timestamp.toDate());
                     datarow.push(item.humidity[elem]);
                     datarow.push(item.temperature[elem]);
                     $scope.data.push(datarow);
                 }
 
             });
-        console.log('finished data processing');
-
         });
 
     });
