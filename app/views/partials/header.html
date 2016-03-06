@@ -22,13 +22,13 @@ and open the template in the editor.
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-user fa-3x"></i>  <i class="fa fa-caret-down"></i>
             </a>
-            <ul class="dropdown-menu dropdown-user">
+            <ul class="dropdown-menu dropdown-user" ng-controller="LogoutCtrl">
                 <li><a href="/preferences"><i class="fa fa-user fa-lg"></i> User Profile</a>
                 </li>
                 <li><a href="/usersettings"><i class="fa fa-gear fa-lg"></i> Settings</a>
                 </li>
                 <li class="divider"></li>
-                <li><a href="/logout"><i class="fa fa-sign-out fa-lg"></i> Logout</a>
+                <li><a href ng-click="logout()"><i class="fa fa-sign-out fa-lg"></i> Logout</a>
                 </li>
             </ul>
             <!-- /.dropdown-user -->

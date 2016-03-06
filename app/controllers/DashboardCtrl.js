@@ -6,7 +6,8 @@
 'use strict';
 
 angular.module('gardenApp')
-    .controller('DashboardCtrl', function ($scope, $cookieStore, Data) {
+    .controller('DashboardCtrl', function ($scope, $cookies, Data) {
+        console.log( $cookies.get('username'))
         $scope.data = [];
         $scope.options = {
             labels: [ 'Date', 'Humidite', 'Temperature' ],

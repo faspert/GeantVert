@@ -68,7 +68,7 @@ module.exports = function (app, passport) {
     
     app.delete('/auth/session', session.logout);
 
-    app.get('/dashboard',session.sessionLogin, function (req, res) {
+    app.get('/dashboard',session.ensureAuthenticated, function (req, res) {
 
         console.log('serving dashboard of : %s',req.user.local.username);
 

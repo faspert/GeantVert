@@ -1,8 +1,7 @@
 'use strict';
 
 angular.module('gardenApp')
-  .factory('Auth', function Auth($location, Session, Registration, $cookieStore) {
-    $cookieStore.remove('username');
+  .factory('Auth', function Auth($location, Session, Registration, $cookies) {
     return {
 
       signup: function(user, callback) {
@@ -12,7 +11,7 @@ angular.module('gardenApp')
               email: user.email,
               password: user.password
             }, function(user,responseHeaders) {
-          $cookieStore.put('username',user.username);
+          $cookies.put('username',user.username);
           console.log("Success Response!!!");
           return cb(null,responseHeaders);
         }, function(err) {
@@ -24,13 +23,12 @@ angular.module('gardenApp')
       login: function(provider, user, callback) {
         var cb = callback || angular.noop;
         Session.save({
-          provider: provider,
+            provider: provider,
           email: user.email,
           password: user.password,
         }, function(user,responseHeaders) {
-          $cookieStore.put('username',user.email);
-          console.log("Success Response!!!");
-          return cb(null,responseHeaders);
+          $cookies.put('username',user.email);
+            return cb(null,responseHeaders);
         }, function(err) {
             console.log("Error Response!!!");
           return cb(err.data,null);
@@ -39,11 +37,13 @@ angular.module('gardenApp')
 
       logout: function(callback) {
         var cb = callback || angular.noop;
+        console.log('Session logout')
         Session.delete(function(res) {
-            return cb();
+                $cookies.remove('username');
+                return cb();
           },
           function(err) {
-            return cb(err.data);
+              return cb(err.data);
           });
       },
 

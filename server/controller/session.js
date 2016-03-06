@@ -56,9 +56,18 @@ exports.ensureAuthenticated = function ensureAuthenticated(req, res, next) {
  */
 exports.logout = function (req, res) {
     if (req.user) {
+        if (req.username)
+        {
+            console.log('logging out user %s',req.username);
+        }
+
         req.logout();
+        req.session.destroy(function (err) {
+            console.log('destory session');
+        });
         res.status(200).send();
     } else {
+        console.log('not logging out');
         res.status(400).send("Not logged in");
     }
 };

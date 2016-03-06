@@ -8,11 +8,10 @@ angular.module('gardenApp')
         $scope.user = {};
         $scope.login = function (form) {
             Auth.login('password', {
-
                 'email': $scope.user.email,
                 'password': $scope.user.password
             },
-            function (err,responseHeaders) {
+            function (err) {
                 $scope.errors = {};
                 if (!err) {
                     window.location = '/dashboard';
